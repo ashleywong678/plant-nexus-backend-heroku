@@ -1,2 +1,2 @@
-class PlantsController < ApplicationController
+class Api::V1::PlantsController < ApplicationController
 end
