@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       session[:user_id] = @user.id
       render json: @user
     else
-      render json: {error: "Invalid"}
+      render json: {error: "Invalid Login"}
     end
   end
 
@@ -15,7 +15,7 @@ class Api::V1::SessionsController < ApplicationController
     if logged_in?
       render json: current_user
     else
-      error: "Not logged in"
+      render json: {error: "Not logged in"}
     end
   end
   
