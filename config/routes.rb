@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   #plant-nexus.com/api/v1/resource
   namespace :api do
     namespace :v1 do 
-      resources :users
-      resources :plants
+      resources :users do
+        resources :plants only: [:index, :show]
+      end
     end
   end
 
