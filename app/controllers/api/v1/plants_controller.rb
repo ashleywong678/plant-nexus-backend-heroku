@@ -3,8 +3,13 @@ class Api::V1::PlantsController < ApplicationController
 
   # GET users/:user_id/plants
   def index
-    @plants = User.find_by(id: params[:user_id]).plants
-    render json: @plants
+    if @plants = User.find_by(id: params[:user_id]).plants
+      render json: @plants
+    else
+      render json: {
+        error: "Sorry, there was an error. No plants found"
+      }
+    end
   end
 
   # GET users/:user_id/plants/1
