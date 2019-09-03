@@ -4,7 +4,7 @@ class Api::V1::PlantsController < ApplicationController
   # GET users/:user_id/plants
   def index
     if @plants = User.find_by(id: params[:user_id]).plants
-      render json: @plants
+      render json: PlantSerializer.new(@plants)
     else
       render json: {
         error: "Sorry, there was an error. No plants found"
@@ -14,7 +14,8 @@ class Api::V1::PlantsController < ApplicationController
 
   # GET users/:user_id/plants/1
   def show
-    render json: @plant
+    # @plant = Plant.find_by(id: params[:plant_id])
+    # render json: PlantSerializer.new(@plants)
   end
 
   #POST /plants
