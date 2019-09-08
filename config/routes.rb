@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :users do
         resources :plants, only: [:index, :show]
       end
+      resources :plants, only: [:create]
     end
   end
 
