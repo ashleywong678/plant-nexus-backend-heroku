@@ -14,17 +14,16 @@ class Api::V1::PlantsController < ApplicationController
 
   # GET users/:user_id/plants/1
   def show
-    # @plant = Plant.find_by(id: params[:plant_id])
-    # render json: PlantSerializer.new(@plants)
+    render json: PlantSerializer.new(@plants)
   end
 
   #POST /plants
   def create
-    @user = User.new(user_params)
-    if @user.save
-      render json: @user, status: :created, location: @user
+    @plant = current_user.plants.build(plant_params)
+    if @plant.save
+      render json: PlantSerializer.new(@plant), status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @plant.errors, status: :unprocessable_entity
     end
   end
 
@@ -45,10 +44,10 @@ class Api::V1::PlantsController < ApplicationController
   private
 
   def set_plant
-    @plant = Plant.find(params[:id])
+    @plant = Plant.find_by(id: params[:id])
   end
 
-  def user_params
+  def plant_params
     params.require(:plant).permit(:name, :scientific_name, :image_url)
   end
 
