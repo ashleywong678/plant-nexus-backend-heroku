@@ -3,7 +3,5 @@ class UserSerializer
   attributes :name, :username
   has_many :plants, serializer: PlantSerializer
 
-
-
 end
  
