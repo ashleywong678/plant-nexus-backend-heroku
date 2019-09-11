@@ -29,7 +29,7 @@ class Api::V1::PlantsController < ApplicationController
 
   #PATCH/PUT /plants/1
   def update
-    if current_user.id == params[:user_id].to_i && @plant.update(plant_params)
+    if current_user == @plant.user && @plant.update(plant_params)
       render json: PlantSerializer.new(@plant), status: :ok
     else
       error_resp = {
@@ -58,7 +58,7 @@ class Api::V1::PlantsController < ApplicationController
   end
 
   def plant_params
-    params.require(:plant).permit(:name, :scientific_name, :image_url)
+    params.require(:plant).permit(:name, :scientific_name, :image_url, :notes)
   end
 
 end
