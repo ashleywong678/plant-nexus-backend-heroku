@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_011532) do
     t.string "name"
     t.string "scientific_name"
     t.string "image_url"
+    t.text "notes"
     t.integer "user_id"
   end
 
