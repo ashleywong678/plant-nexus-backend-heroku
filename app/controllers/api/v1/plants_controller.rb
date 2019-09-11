@@ -29,16 +29,26 @@ class Api::V1::PlantsController < ApplicationController
 
   #PATCH/PUT /plants/1
   def update
-    if @plant.update(plant_params)
-      render json: @plant
+    if current_user.id == params[:user_id].to_i && @plant.update(plant_params)
+      render json: PlantSerializer.new(@plant), status: :ok
     else
-      render json: @plant.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @plant.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
   #DELETE /plants/1
   def destroy
-    @plant.destroy
+    if @plant.destroy
+      render json: {data: "Successfully removed this dead plant"}, status: :ok
+    else
+      errors_resp = {
+        error: "The force is with this plant, it still lives!"
+      }
+      render json: error_resp, status: :unprocessable_entity
+    end
   end
 
   private
