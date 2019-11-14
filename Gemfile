@@ -20,6 +20,7 @@ gem 'foreman'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'pg'
+gem 'rack-cors'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
