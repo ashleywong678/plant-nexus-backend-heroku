@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://plant-nexus.netlify.com/', 'http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'
+    origins *#'http://plant-nexus.netlify.com/', 'http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'
 
     resource '*',
       headers: :any,
